@@ -40,28 +40,6 @@ let tokens = bpe.encode_with_special_tokens(
 println!("Token count: {}", tokens.len());
 ```
 
-## Counting max_tokens for a chat completion request
-
-```rust
-use tiktoken_rs::get_chat_completion_max_tokens;
-use async_openai::types::{ChatCompletionRequestMessageArgs, Role};
-
-let messages = vec![
-    ChatCompletionRequestMessageArgs::default()
-        .content("You are a helpful assistant!")
-        .role(Role::System)
-        .build()
-        .unwrap(),
-    ChatCompletionRequestMessageArgs::default()
-        .content("Hello, how are you?")
-        .role(Role::User)
-        .build()
-        .unwrap(),
-];
-let max_tokens = get_chat_completion_max_tokens("gpt-4", &messages).unwrap();
-println!("max_tokens: {}", max_tokens);
-```
-
 `tiktoken` supports these encodings used by OpenAI models:
 
 | Encoding name           | OpenAI models                                                             |
